@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <script>
+        // 🛑 COLOQUE OS NÚMEROS AQUI (Apenas números, com 55 + DDD, sem espaços ou traços)
+        const vendedores = [
+            "5511976203346", 
+            "5511982494191", 
+            "5511777777777"  
+            // Adicione até 15 números aqui, separados por vírgula
+        ];
+
+        // Mensagem que já vai digitada
+        const mensagem = encodeURIComponent("Olá! Vim através do anúncio e gostaria de saber mais informações.");
+
+        function redirecionar() {
+            // Escolhe um número aleatório
+            const indice = Math.floor(Math.random() * vendedores.length);
+            const numeroEscolhido = vendedores[indice];
+            
+            // Monta o link oficial do WhatsApp usando + (mais seguro contra erros de formatação)
+            const linkWhatsApp = "https://wa.me/" + numeroEscolhido + "?text=" + mensagem;
+            
+            // Redirecionamento instantâneo e invisível
+            window.location.replace(linkWhatsApp);
+        }
+
+        // Executa IMEDIATAMENTE
+        redirecionar();
+    </script>
+</head>
+<body>
+    <!-- Fallback mínimo apenas por segurança -->
+    <div style="text-align: center; font-family: Arial, sans-serif; margin-top: 50px; color: #333;">
+        <p>Redirecionando para o WhatsApp...</p>
+        <p style="font-size: 14px;">
+            <a id="link-manual" href="#" style="color: #25D366; text-decoration: none; font-weight: bold;">
+                Clique aqui se o WhatsApp não abrir automaticamente.
+            </a>
+        </p>
+    </div>
+
+    <script>
+        // Garante que o link manual também funcione
+        const primeiroNumero = vendedores[0];
+        const mensagemFallback = encodeURIComponent("Olá! Vim através do anúncio e gostaria de saber mais informações.");
+        document.getElementById('link-manual').href = "https://wa.me/" + primeiroNumero + "?text=" + mensagemFallback;
+    </script>
+</body>
+</html>
